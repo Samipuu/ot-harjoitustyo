@@ -1,4 +1,4 @@
-# Työaikakijanpito
+# Työaikakirjanpito
 
 Päivä | Tunnit (h) | Mitä tehty?
 ------|------------|------------
