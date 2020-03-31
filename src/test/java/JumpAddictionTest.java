@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 
+import jumpaddiction.Character;
+import jumpaddiction.Game;
+import jumpaddiction.Player;
+import jumpaddiction.ui.UI;
+import jumpaddiction.ui.Main;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +22,30 @@ import static org.junit.Assert.*;
  */
 public class JumpAddictionTest {
     
+    
+    @Test
+    public void gravityLowersChar() {
+        Character player = new Player(200,200);
+        player.gravity();
+        assertTrue(player.getCharacter().getTranslateY() != 200);
+    }
+    
+    @Test
+    public void jumpMoveCharUp() {
+        Character player = new Player(100,100);
+        player.jump();
+        assertTrue(player.getCharacter().getTranslateY() != 100);
+    }
+    
+    @Test
+    public void moveCharRight() {
+        Character player = new Player(100,100);
+        player.moveRight();
+        assertTrue(player.getCharacter().getTranslateX() != 100);
+    }
+    
     public JumpAddictionTest() {
+        
     }
     
     @BeforeClass

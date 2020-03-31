@@ -91,6 +91,8 @@ public abstract class Character {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+    
+    
 }
 
 
