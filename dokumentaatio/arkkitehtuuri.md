@@ -1,1 +1,1 @@
-![Luokka/pakkauskaavio](/kuvat/luokka_pakkauskaavio.png)
+![Luokka/pakkauskaavio](/dokumentaatio/kuvat/luokka_pakkauskaavio.png)
