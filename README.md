@@ -15,3 +15,19 @@ Sovellus voidaan käynnistää komennolla
 ```
 mvn compile exec:java -Dexec.mainClass=jumpaddiction.ui.Main
 ```
+
+### Testien suorittaminen
+
+Testit voidaan suorittaa komenolla
+
+```
+mvn test
+```
+
+Testikattavuusraportti komennolla
+
+```
+mvn jacoco:report
+```
+
+Kattavuusraporttia voi tarkastella avaamalla tiedoston target/site/jacoco/index.html

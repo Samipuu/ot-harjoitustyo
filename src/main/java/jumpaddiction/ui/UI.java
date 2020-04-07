@@ -13,16 +13,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import jumpaddiction.Game;
+import jumpaddiction.game.Game;
 
 /**
  *
  * @author suonpaas
  */
-public class UI extends Application{
+public class UI extends Application {
     
-    public static int WIDTH = 800;
-    public static int HEIGHT = 600;
+    public static int width = 800;
+    public static int height = 600;
 
     public static void main(String[] args) {
         launch(args);
@@ -31,7 +31,7 @@ public class UI extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane window = new Pane();
-        window.setPrefSize(WIDTH, HEIGHT);
+        window.setPrefSize(width, height);
         
         primaryStage.setTitle("JumpAddiction");
         
@@ -40,7 +40,8 @@ public class UI extends Application{
         start.setOnAction(e->{
             Scene gameScene = new Scene(window, 1,1);
             try {
-                gameScene = Game.game();
+                Game newGame = new Game();
+                gameScene = newGame.getGameScene();
             } catch (Exception ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
             }

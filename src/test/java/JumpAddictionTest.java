@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-import jumpaddiction.Character;
-import jumpaddiction.Game;
-import jumpaddiction.Player;
+import jumpaddiction.game.Character;
+import jumpaddiction.game.Game;
+import jumpaddiction.game.Player;
 import jumpaddiction.ui.UI;
 import jumpaddiction.ui.Main;
 import org.junit.After;
