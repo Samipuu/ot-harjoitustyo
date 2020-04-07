@@ -6,8 +6,8 @@ Sovelluksen tarkoitus on olla leppoisaa ajanvietettä. Kyseessä on yksinkertais
 
 ## Perusversion tarjoama toiminnallisuus
 
-* Yksinkertainen käyttöliittymä mistä pelin saa käynnistettyä
-* Käyttäjä pystyy pelaamaan demo tason 2d maailmassa
+* Yksinkertainen käyttöliittymä mistä pelin saa käynnistettyä :heavy_check_mark:
+* Käyttäjä pystyy pelaamaan demo tason 2d maailmassa :heavy_check_mark:
 * Hahmo liikkuu automaattisesti eteenpäin
 * Käyttäjä vaikuttaa hahmoon ainoastaan hyppäämällä
 * Käyttäjä saa pelin päätyttyä ilmoituksena tuloksen

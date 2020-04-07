@@ -6,6 +6,8 @@ Yksinkertainen sivulta kuvattu tasohyppely peli.
 
 [Vaatimusmäärittely](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
+[Arkkitehtuurikuvaus](https://github.com/Samipuu/ot-harjoitustyo/tree/master/dokumentaatio/arkkitehtuuri.md)
+
 [Työaikakirjanpito](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 ## Komentorivitoiminnot
@@ -31,3 +33,11 @@ mvn jacoco:report
 ```
 
 Kattavuusraporttia voi tarkastella avaamalla tiedoston target/site/jacoco/index.html
+
+### Checkstyle
+
+Tiedoston checkstyle.xml määrittelemät tarkastukset voidaan suorittaa komennolla
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
+Raporttia voi tarkastella avaamalla tiedoston target/site/checkstyle.html
