@@ -47,12 +47,6 @@ public class Game {
         
         tiles = new ArrayList<>();
         
-        Canvas canvas = new Canvas();
-        
-        String testi = "testi.png";
-        
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        
         map = new int[20][30];
         
         try {
@@ -98,18 +92,6 @@ public class Game {
 
             }
         }
-        
-        /*Image backGround = new Image(getClass().getClassLoader().getResourceAsStream(testi));
-        
-        window.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-            canvas.setWidth(newValue.getWidth());
-            canvas.setHeight(newValue.getHeight());
-            gc.drawImage(backGround, 0, 0);
-        });*/
-        
-        
-        //window.getChildren().add(canvas);
-        
         
         Character ball = new Player(400, 300);
         
@@ -160,7 +142,7 @@ public class Game {
                 }
                 boolean hit = false;
                 Double futureX = ball.getCharacter().getTranslateX() + ball.getMovement().getX();
-                    Double futureY = ball.getCharacter().getTranslateY() + ball.getMovement().getY();
+                Double futureY = ball.getCharacter().getTranslateY() + ball.getMovement().getY();
                 Shape future = new Rectangle(futureX, futureY, 20, 20);
                 for (Shape tile:tiles) {
                         if (Shape.intersect(future, tile).getBoundsInLocal().getWidth() != -1) {
