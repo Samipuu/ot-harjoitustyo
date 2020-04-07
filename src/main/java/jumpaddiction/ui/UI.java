@@ -32,13 +32,10 @@ public class UI extends Application {
     public void start(Stage primaryStage) throws Exception {
         Pane window = new Pane();
         window.setPrefSize(width, height);
-        
         primaryStage.setTitle("JumpAddiction");
-        
         Button start = new Button("Start");
-        
-        start.setOnAction(e->{
-            Scene gameScene = new Scene(window, 1,1);
+        start.setOnAction(e-> {
+            Scene gameScene = new Scene(window, 1, 1);
             try {
                 Game newGame = new Game();
                 gameScene = newGame.getGameScene();
@@ -51,13 +48,11 @@ public class UI extends Application {
         });
         //Button leaderboards = new Button("Leaderboards");
         Button exit = new Button("Exit");
-        
-        exit.setOnAction(e->{
+        exit.setOnAction(e-> {
             primaryStage.close();
         });
         
-        VBox layout = new VBox(start,exit);
-        
+        VBox layout = new VBox(start, exit);
         Scene scene = new Scene(layout, 200, 100);
         primaryStage.setScene(scene);
         primaryStage.show();
