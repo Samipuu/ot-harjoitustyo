@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import jumpaddiction.game.Character;
 import jumpaddiction.game.Game;
 import jumpaddiction.game.Player;
-import jumpaddiction.game.Spike;
 import jumpaddiction.ui.UI;
 import jumpaddiction.ui.Main;
 import org.junit.After;
@@ -53,20 +52,6 @@ public class JumpAddictionTest {
         player.moveLeft();
         player.move();
         assertTrue(player.getCharacter().getTranslateX() != 100);
-    }
-    
-    @Test
-    public void canHitSpikes() throws Exception {
-        Spike spike = new Spike(100,100);
-        Character player = new Player(100,100);
-        assertTrue(player.hit(spike));
-    }
-    
-    @Test
-    public void canEvadeSpikes() throws Exception {
-        Spike spike = new Spike(200,100);
-        Character player = new Player(100,100);
-        assertFalse(player.hit(spike));
     }
     
     public JumpAddictionTest() {

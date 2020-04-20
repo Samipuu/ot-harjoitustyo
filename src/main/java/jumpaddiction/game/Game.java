@@ -23,8 +23,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import jumpaddiction.ui.UI;
 
 /**
  *
@@ -39,6 +41,10 @@ public class Game {
     
     private int[][] map;
     private List<Shape> tiles;
+    private List<Shape> spikes;
+    
+    private boolean readyToJump;
+    private double jumpHeight;
 
     public Game() throws Exception {
         GridPane window = new GridPane();
@@ -46,8 +52,9 @@ public class Game {
         window.setGridLinesVisible(true);
         
         tiles = new ArrayList<>();
+        spikes = new ArrayList<>();
+        map = new int[20][240];
         
-        map = new int[20][30];
         
         try {
             
@@ -60,7 +67,7 @@ public class Game {
                 
                 String line = br.readLine();
                 String[] tokens = line.split(" ");
-                for (int col = 0; col < 30; col++) {
+                for (int col = 0; col < 240; col++) {
                     map[row][col] = Integer.parseInt(tokens[col]);
                     
                 }
@@ -76,7 +83,7 @@ public class Game {
             rowConst.setMaxHeight(30);
             rowConst.setMinHeight(30);
             window.getRowConstraints().add(rowConst);
-            for (int col = 0; col < 30; col++) {
+            for (int col = 0; col < 240; col++) {
                 if (row == 0) {
                     ColumnConstraints colConst = new ColumnConstraints();
                     colConst.setMaxWidth(30);
@@ -88,12 +95,24 @@ public class Game {
                     tile.setFill(Color.BLACK);
                     tiles.add(tile);
                     window.add(tile, col, row);
-                } 
+                } else if (map[row][col] == 2) {
+                    Rectangle tile = new Rectangle(row * 30, col * 30, 30, 30);
+                    tile.setFill(Color.GREEN);
+                    tiles.add(tile);
+                    window.add(tile, col, row);
+                } else if (map[row][col] == 3) {
+                    Polygon spike = new Polygon(0, 30, 15, 0, 30, 30);
+                    spike.setFill(Color.RED);
+                    tiles.add(spike);
+                    spikes.add(spike);
+                    window.add(spike, col, row);
+                }
+                
 
             }
         }
         
-        Character ball = new Player(400, 300);
+        Character ball = new Player(100, 400);
         
         window.getChildren().add(ball.getCharacter());
         
@@ -109,50 +128,77 @@ public class Game {
             pressedButtons.put(event.getCode(), Boolean.FALSE);
         });
         
+        Long time = System.currentTimeMillis();
+        
+        
+        
         new AnimationTimer() {
             
             @Override
             public void handle(long currentTime) {
-                if (pressedButtons.getOrDefault(KeyCode.LEFT, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.A, Boolean.FALSE)) {
-                    ball.moveLeft();
-                    
-                }
-                
-                if (pressedButtons.getOrDefault(KeyCode.RIGHT, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.D, Boolean.FALSE)) {
-                    
-                    ball.moveRight();
-                }
+                long elapsed = (System.currentTimeMillis() - time);
                 
                 if (pressedButtons.getOrDefault(KeyCode.UP, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.W, Boolean.FALSE)) {
+                    
                     ball.jump();
-                    
                 } else {
-                    boolean hit = false;
-                    for (Shape tile:tiles) {
-                        if (Shape.intersect(ball.getCharacter(), tile).getBoundsInLocal().getWidth() != -1) {
-                            hit = true;
-                        }
-                    }
-                    
-                    if (!hit) {
-                        ball.gravity();
-                        
-                    }
-
+                    ball.setComingDown(true);
                 }
+                
+                
+                
+                
                 boolean hit = false;
+                boolean gravity = true;
                 Double futureX = ball.getCharacter().getTranslateX() + ball.getMovement().getX();
                 Double futureY = ball.getCharacter().getTranslateY() + ball.getMovement().getY();
                 Shape future = new Rectangle(futureX, futureY, 20, 20);
                 for (Shape tile:tiles) {
+                    
+                    if(elapsed > 2000) {
+                        tile.setTranslateX(tile.getTranslateX()-1);
+                    }
+                    
+                    
+                    
                         if (Shape.intersect(future, tile).getBoundsInLocal().getWidth() != -1) {
                             
                             hit = true;
+                            this.stop();
+                            if(tile.getFill() == Color.GREEN) {
+                                System.out.println("You won the GAME!");
+                            } else {
+                                System.out.println("You lost the game!");
+                            }
+                            UI.gameOver();
+                        }
+                        if (Shape.intersect(ball.getCharacter(), tile).getBoundsInLocal().getWidth() != -1) {
+                            ball.setComingDown(false);
+                            ball.setReadyToJump(true);
+                            gravity = false;
                         }
                     }
+                if(gravity) {
+                    
+                    ball.gravity();
+                    
+                    for(Shape spike : spikes) {
+                        if(Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
+                            System.out.println("You lost the game!");
+                            this.stop();
+                            UI.gameOver();
+                        }
+                    }
+                    if(ball.getCharacter().getTranslateY() > 600) {
+                        System.out.println("You lost the game!");
+                        this.stop();
+                        UI.gameOver();
+                    }
+                }
                 
                 if (!hit) {
                     ball.move();
+                    
                 } else {
                     ball.setMovement(Point2D.ZERO);
                 }
@@ -165,6 +211,7 @@ public class Game {
     public Scene getGameScene() {
         return this.gameScene;
     }
+    
     
     
 }

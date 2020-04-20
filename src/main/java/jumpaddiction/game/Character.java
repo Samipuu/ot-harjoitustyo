@@ -16,18 +16,19 @@ import javafx.scene.shape.Shape;
 public abstract class Character {
     private Polygon character;
     private Point2D movement;
-    private boolean alive;
     private double jumpPoint;
     private Point2D location;
+    private boolean readyToJump;
+    private boolean comingDown;
     
     public Character(Polygon polygon, int x, int y) {
+        this.comingDown = true;
         this.character = polygon;
         this.character.setTranslateX(x);
         this.character.setTranslateY(y);
         
         this.movement = new Point2D(0, 0);
         this.location = new Point2D(x, y);
-        this.alive = true;
     }
     
     public Polygon getCharacter() {
@@ -42,11 +43,7 @@ public abstract class Character {
         this.movement = new Point2D(0, 0);
         
     }
-    
-    public void acc() {
-        
-    }
-    
+
     public void moveLeft() {
         //double muutosX = Math.cos(Math.toRadians(this.character.getRotate()));
         //double muutosY = Math.sin(Math.toRadians(this.character.getRotate()));
@@ -65,20 +62,23 @@ public abstract class Character {
     }
     
     public void jump() {
-        if (this.character.getTranslateY() == 500) {
-            jumpPoint = this.character.getTranslateY();
+        if(readyToJump) {
+            this.jumpPoint = this.character.getTranslateY() - 100;
         }
         
-        if (this.character.getTranslateY() > jumpPoint - 100) {
-            this.character.setTranslateY(this.character.getTranslateY() - 1);
+        if (this.character.getTranslateY() > jumpPoint && !comingDown) {
+            this.character.setTranslateY(this.character.getTranslateY() - 1.7);
+            readyToJump = false;
+        } else {
+            this.comingDown = true;
         }
         
     }
     
     public void gravity() {
-        if (this.character.getTranslateY() < 500) {
-            this.character.setTranslateY(this.character.getTranslateY() + 0.5);
-        }
+        
+        this.character.setTranslateY(this.character.getTranslateY() + 0.7);
+        
         
     }
     
@@ -101,12 +101,20 @@ public abstract class Character {
         this.movement = movement;
     }
     
-    public boolean getAlive() {
-        return alive;
+    public void setReadyToJump(boolean jump) {
+        this.readyToJump = jump;
     }
     
-    public void setAlive(boolean alive) {
-        this.alive = alive;
+    public boolean getReadyToJump() {
+        return this.readyToJump;
+    }
+    
+    public boolean getComingDown() {
+        return this.comingDown;
+    }
+    
+    public void setComingDown(boolean x) {
+        this.comingDown = x;
     }
     
     

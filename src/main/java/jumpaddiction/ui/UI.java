@@ -23,6 +23,8 @@ public class UI extends Application {
     
     public static int width = 800;
     public static int height = 600;
+    
+    private static Stage stage;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,6 +32,7 @@ public class UI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         Pane window = new Pane();
         window.setPrefSize(width, height);
         primaryStage.setTitle("JumpAddiction");
@@ -58,4 +61,31 @@ public class UI extends Application {
         primaryStage.show();
     }
     
+    public static void gameOver() {
+        Pane window = new Pane();
+        window.setPrefSize(width, height);
+        stage.setTitle("JumpAddiction");
+        Button restart = new Button("Retry");
+        restart.setOnAction(e -> {
+            Scene gameScene = new Scene(window, 1, 1);
+                        try {
+                Game newGame = new Game();
+                gameScene = newGame.getGameScene();
+            } catch (Exception ex) {
+                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            stage.setScene(gameScene);
+        });
+        
+        Button exit = new Button("Exit");
+        exit.setOnAction(e-> {
+            stage.close();
+        });
+        
+        VBox layout = new VBox(restart, exit);
+        Scene scene = new Scene(layout, 200, 100);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
