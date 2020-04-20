@@ -103,7 +103,6 @@ public class Game {
                 } else if (map[row][col] == 3) {
                     Polygon spike = new Polygon(0, 30, 15, 0, 30, 30);
                     spike.setFill(Color.RED);
-                    tiles.add(spike);
                     spikes.add(spike);
                     window.add(spike, col, row);
                 }
@@ -138,7 +137,7 @@ public class Game {
             public void handle(long currentTime) {
                 long elapsed = (System.currentTimeMillis() - time);
                 
-                if (pressedButtons.getOrDefault(KeyCode.UP, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.W, Boolean.FALSE)) {
+                if (pressedButtons.getOrDefault(KeyCode.UP, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.W, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.SPACE, Boolean.FALSE)) {
                     
                     ball.jump();
                 } else {
@@ -166,7 +165,8 @@ public class Game {
                             hit = true;
                             this.stop();
                             if(tile.getFill() == Color.GREEN) {
-                                System.out.println("You won the GAME!");
+                                System.out.println("You won the GAME! You died " + UI.getDeaths() + " times during the game.");
+                                UI.emptyDeaths();
                             } else {
                                 System.out.println("You lost the game!");
                             }
@@ -182,13 +182,7 @@ public class Game {
                     
                     ball.gravity();
                     
-                    for(Shape spike : spikes) {
-                        if(Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
-                            System.out.println("You lost the game!");
-                            this.stop();
-                            UI.gameOver();
-                        }
-                    }
+                    
                     if(ball.getCharacter().getTranslateY() > 600) {
                         System.out.println("You lost the game!");
                         this.stop();
@@ -203,6 +197,17 @@ public class Game {
                     ball.setMovement(Point2D.ZERO);
                 }
                 
+                for(Shape spike : spikes) {
+                    if(elapsed > 2000) {
+                        spike.setTranslateX(spike.getTranslateX()-1);
+                    }
+                    
+                    if(Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
+                        System.out.println("You lost the game!");
+                        this.stop();
+                        UI.gameOver();
+                    }
+                }
             }
         }.start();
         

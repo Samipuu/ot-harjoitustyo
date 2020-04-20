@@ -6,6 +6,7 @@
 package jumpaddiction.game;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -33,6 +34,10 @@ public abstract class Character {
     
     public Polygon getCharacter() {
         return character;
+    }
+    
+    public void setColor(Color color) {
+        character.setFill(color);
     }
     
     public void move() {

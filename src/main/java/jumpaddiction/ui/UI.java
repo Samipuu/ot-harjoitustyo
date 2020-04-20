@@ -24,6 +24,8 @@ public class UI extends Application {
     public static int width = 800;
     public static int height = 600;
     
+    private static int deaths = 0;
+    
     private static Stage stage;
 
     public static void main(String[] args) {
@@ -62,6 +64,7 @@ public class UI extends Application {
     }
     
     public static void gameOver() {
+        deaths++;
         Pane window = new Pane();
         window.setPrefSize(width, height);
         stage.setTitle("JumpAddiction");
@@ -87,5 +90,13 @@ public class UI extends Application {
         Scene scene = new Scene(layout, 200, 100);
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public static int getDeaths() {
+        return deaths;
+    }
+    
+    public static void emptyDeaths() {
+        deaths = -1;
     }
 }
