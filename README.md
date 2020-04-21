@@ -10,12 +10,28 @@ Yksinkertainen sivulta kuvattu tasohyppely peli.
 
 [Työaikakirjanpito](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
+[Release](https://github.com/Samipuu/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Komentorivitoiminnot
 
 Sovellus voidaan käynnistää komennolla
 
 ```
 mvn compile exec:java -Dexec.mainClass=jumpaddiction.ui.Main
+```
+
+### Suoritettava Jar voidaan generoida
+
+```
+mvn package
+```
+
+Generoi target hakemistoon suoritettavan jar-tiedoston JumpAddiction-1.0-SNAPSHOT.jar
+
+Jar voidaan käynnistää komennolla
+
+```
+java -jar JumpAddiction-1.0-SNAPSHOT.jar
 ```
 
 ### Testien suorittaminen

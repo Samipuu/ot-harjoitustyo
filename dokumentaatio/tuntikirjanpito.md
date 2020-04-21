@@ -10,3 +10,8 @@ Päivä | Tunnit (h) | Mitä tehty?
 5.4.|3|TileMap opettelua
 6.4.|2|TileMap luonti ja tiedostosta luku sovellukseen
 7.4.|3|Collision kartan kanssa ja dokumentaation päivitys
+18.4.|2|Hahmon liikkuminen kartalla
+19.4.|2|Hypyn korjaaminen eri tilanteissa
+20.4.|3|Kartan luonti / testaus / bugien korjaamista
+21.4.|2|Dokumentaation päivitys ja testausten luonti
+yht|26,5|

@@ -8,10 +8,10 @@ Sovelluksen tarkoitus on olla leppoisaa ajanvietettä. Kyseessä on yksinkertais
 
 * Yksinkertainen käyttöliittymä mistä pelin saa käynnistettyä :heavy_check_mark:
 * Käyttäjä pystyy pelaamaan demo tason 2d maailmassa :heavy_check_mark:
-* Hahmo liikkuu automaattisesti eteenpäin
-* Käyttäjä vaikuttaa hahmoon ainoastaan hyppäämällä
-* Käyttäjä saa pelin päätyttyä ilmoituksena tuloksen
-* Käyttäjä pystyy pelin päätyttyä aloittamaan uuden pelin tai sulkemaan pelin
+* Hahmo liikkuu automaattisesti eteenpäin :heavy_check_mark:
+* Käyttäjä vaikuttaa hahmoon ainoastaan hyppäämällä :heavy_check_mark:
+* Käyttäjä saa pelin päätyttyä ilmoituksena tuloksen :heavy_check_mark:
+* Käyttäjä pystyy pelin päätyttyä aloittamaan uuden pelin tai sulkemaan pelin :heavy_check_mark:
 
 ## Jatkokehitysideoita
 
