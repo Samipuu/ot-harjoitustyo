@@ -5,7 +5,6 @@
  */
 package jumpaddiction.game;
 
-import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -16,9 +15,7 @@ import javafx.scene.shape.Shape;
  */
 public abstract class Character {
     private Polygon character;
-    private Point2D movement;
     private double jumpPoint;
-    private Point2D location;
     private boolean readyToJump;
     private boolean comingDown;
     
@@ -27,9 +24,6 @@ public abstract class Character {
         this.character = polygon;
         this.character.setTranslateX(x);
         this.character.setTranslateY(y);
-        
-        this.movement = new Point2D(0, 0);
-        this.location = new Point2D(x, y);
     }
     
     public Polygon getCharacter() {
@@ -40,34 +34,8 @@ public abstract class Character {
         character.setFill(color);
     }
     
-    public void move() {
-        
-        this.character.setTranslateX(this.character.getTranslateX() + this.movement.getX());
-        this.character.setTranslateY(this.character.getTranslateY() + this.movement.getY());
-        
-        this.movement = new Point2D(0, 0);
-        
-    }
-
-    public void moveLeft() {
-        //double muutosX = Math.cos(Math.toRadians(this.character.getRotate()));
-        //double muutosY = Math.sin(Math.toRadians(this.character.getRotate()));
-        
-        double muutosX = -1;
-        double muutosY = 0.0;
-        
-        //System.out.println(muutosX);
-        //System.out.println(muutosY);
-        
-        this.movement = this.movement.add(muutosX, muutosY);
-    }
-    
-    public void moveRight() {
-        this.movement = this.movement.add(1, 0);
-    }
-    
     public void jump() {
-        if(readyToJump) {
+        if (readyToJump) {
             this.jumpPoint = this.character.getTranslateY() - 100;
         }
         
@@ -87,24 +55,12 @@ public abstract class Character {
         
     }
     
-    public Point2D getLocation() {
-        //location.(this.character.getTranslateX(), this.character.getTranslateY());
-        return this.location;
-    }
-    
     
     public boolean hit(Character player) {
         Shape impactZone = Shape.intersect(this.character, player.getCharacter());
         return impactZone.getBoundsInLocal().getWidth() != -1;
     }
-    
-    public Point2D getMovement() {
-        return movement;
-    }
-    
-    public void setMovement(Point2D movement) {
-        this.movement = movement;
-    }
+
     
     public void setReadyToJump(boolean jump) {
         this.readyToJump = jump;

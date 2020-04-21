@@ -13,10 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.animation.AnimationTimer;
-import javafx.geometry.Point2D;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.ColumnConstraints;
@@ -129,8 +126,6 @@ public class Game {
         
         Long time = System.currentTimeMillis();
         
-        
-        
         new AnimationTimer() {
             
             @Override
@@ -138,71 +133,58 @@ public class Game {
                 long elapsed = (System.currentTimeMillis() - time);
                 
                 if (pressedButtons.getOrDefault(KeyCode.UP, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.W, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.SPACE, Boolean.FALSE)) {
-                    
                     ball.jump();
                 } else {
                     ball.setComingDown(true);
                 }
                 
-                
-                
-                
-                boolean hit = false;
                 boolean gravity = true;
-                Double futureX = ball.getCharacter().getTranslateX() + ball.getMovement().getX();
-                Double futureY = ball.getCharacter().getTranslateY() + ball.getMovement().getY();
+                Double futureX = ball.getCharacter().getTranslateX();
+                Double futureY = ball.getCharacter().getTranslateY();
                 Shape future = new Rectangle(futureX, futureY, 20, 20);
                 for (Shape tile:tiles) {
                     
-                    if(elapsed > 2000) {
-                        tile.setTranslateX(tile.getTranslateX()-1);
+                    if (elapsed > 2000) {
+                        tile.setTranslateX(tile.getTranslateX() - 1);
                     }
                     
-                    
-                    
-                        if (Shape.intersect(future, tile).getBoundsInLocal().getWidth() != -1) {
+                    if (Shape.intersect(future, tile).getBoundsInLocal().getWidth() != -1) {
                             
-                            hit = true;
-                            this.stop();
-                            if(tile.getFill() == Color.GREEN) {
-                                System.out.println("You won the GAME! You died " + UI.getDeaths() + " times during the game.");
-                                UI.emptyDeaths();
-                            } else {
-                                System.out.println("You lost the game!");
-                            }
-                            UI.gameOver();
+                        this.stop();
+                    
+                        if (tile.getFill() == Color.GREEN) {
+                            System.out.println("You won the GAME! You died " + UI.getDeaths() + " times during the game.");
+                            UI.emptyDeaths();
+                        } else {
+                            System.out.println("You lost the game!");
                         }
-                        if (Shape.intersect(ball.getCharacter(), tile).getBoundsInLocal().getWidth() != -1) {
-                            ball.setComingDown(false);
-                            ball.setReadyToJump(true);
-                            gravity = false;
-                        }
+                        
+                        UI.gameOver();
                     }
-                if(gravity) {
+                    
+                    if (Shape.intersect(ball.getCharacter(), tile).getBoundsInLocal().getWidth() != -1) {
+                        ball.setComingDown(false);
+                        ball.setReadyToJump(true);
+                        gravity = false;
+                    }
+                }
+                if (gravity) {
                     
                     ball.gravity();
                     
-                    
-                    if(ball.getCharacter().getTranslateY() > 600) {
+                    if (ball.getCharacter().getTranslateY() > 600) {
                         System.out.println("You lost the game!");
                         this.stop();
                         UI.gameOver();
                     }
                 }
                 
-                if (!hit) {
-                    ball.move();
-                    
-                } else {
-                    ball.setMovement(Point2D.ZERO);
-                }
-                
-                for(Shape spike : spikes) {
-                    if(elapsed > 2000) {
-                        spike.setTranslateX(spike.getTranslateX()-1);
+                for (Shape spike : spikes) {
+                    if (elapsed > 2000) {
+                        spike.setTranslateX(spike.getTranslateX() - 1);
                     }
                     
-                    if(Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
+                    if (Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
                         System.out.println("You lost the game!");
                         this.stop();
                         UI.gameOver();

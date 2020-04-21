@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 
-import javafx.scene.Scene;
 import jumpaddiction.game.Character;
-import jumpaddiction.game.Game;
 import jumpaddiction.game.Player;
-import jumpaddiction.ui.UI;
-import jumpaddiction.ui.Main;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,25 +30,44 @@ public class JumpAddictionTest {
     @Test
     public void jumpMoveCharUp() {
         Character player = new Player(100,100);
+        player.setReadyToJump(true);
+        player.setComingDown(false);
         player.jump();
         assertTrue(player.getCharacter().getTranslateY() != 100);
     }
     
     @Test
-    public void moveCharRight() {
+    public void cantJumpWhenFalling() {
         Character player = new Player(100,100);
-        player.moveRight();
-        player.move();
-        assertTrue(player.getCharacter().getTranslateX() != 100);
+        player.setComingDown(true);
+        player.jump();
+        assertTrue(player.getCharacter().getTranslateY() == 100 && player.getComingDown());
     }
     
     @Test
-    public void moveCharLeft() {
+    public void cantJumpWhenNotReady() {
         Character player = new Player(100,100);
-        player.moveLeft();
-        player.move();
-        assertTrue(player.getCharacter().getTranslateX() != 100);
+        player.setReadyToJump(false);
+        player.jump();
+        assertTrue(player.getCharacter().getTranslateY() == 100 && !player.getReadyToJump());
+        
     }
+    
+    @Test
+    public void playerHitsObjects() {
+        Character player = new Player(100,100);
+        Character otherPlayer = new Player(100,100);
+        assertTrue(player.hit(otherPlayer));
+    }
+    
+    @Test
+    public void playerEvadesObjects() {
+        Character player = new Player(100,100);
+        Character otherPlayer = new Player(200,200);
+        assertFalse(player.hit(otherPlayer));
+    }
+    
+    
     
     public JumpAddictionTest() {
         
