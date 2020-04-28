@@ -14,6 +14,11 @@ import javafx.scene.shape.Polygon;
  */
 public class Player extends Character {
     
+    /**
+     * Luo uuden pelaaja tyypin hahmon.
+     * @param x pelaajan sijainti x-akselilla
+     * @param y pelaajan sijainti y-akselilla
+     */
     public Player(int x, int y) {
         super(new Polygon(0, 0, 0, 20, 20, 20, 20, 0), x, y);
         super.setColor(Color.CORAL);

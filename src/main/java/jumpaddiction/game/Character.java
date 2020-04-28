@@ -8,6 +8,7 @@ package jumpaddiction.game;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
+import jumpaddiction.map.Tile;
 
 /**
  *
@@ -19,6 +20,13 @@ public abstract class Character {
     private boolean readyToJump;
     private boolean comingDown;
     
+    /**
+     * Luo hahmon.
+     * 
+     * @param polygon muotoinen hahmo objekti.
+     * @param x hahmon sijainti x-akselilla.
+     * @param y hahmon sijainti y-akselilla.
+     */
     public Character(Polygon polygon, int x, int y) {
         this.comingDown = true;
         this.character = polygon;
@@ -26,21 +34,32 @@ public abstract class Character {
         this.character.setTranslateY(y);
     }
     
+    /**
+     * Palauttaa hahmon polygon objektin. 
+     * @return polygon object
+     */
     public Polygon getCharacter() {
         return character;
     }
     
+    /**
+     * Asettaa hahmon värin. 
+     * @param color haluttu väri.
+     */
     public void setColor(Color color) {
         character.setFill(color);
     }
     
+    /**
+     * Hahmon hyppy metodi. Liikuttaa hahmoa ylöspäin mikäli hahmo on maassa.
+     */
     public void jump() {
         if (readyToJump) {
             this.jumpPoint = this.character.getTranslateY() - 100;
         }
         
         if (this.character.getTranslateY() > jumpPoint && !comingDown) {
-            this.character.setTranslateY(this.character.getTranslateY() - 1.7);
+            this.character.setTranslateY(this.character.getTranslateY() - 6.8);
             readyToJump = false;
         } else {
             this.comingDown = true;
@@ -48,16 +67,24 @@ public abstract class Character {
         
     }
     
+    /**
+     * Hahmon painovoima. Liikuttaa hahmoa alaspäin. 
+     */
     public void gravity() {
         
-        this.character.setTranslateY(this.character.getTranslateY() + 0.7);
+        this.character.setTranslateY(this.character.getTranslateY() + 2.8);
         
         
     }
     
-    
-    public boolean hit(Character player) {
-        Shape impactZone = Shape.intersect(this.character, player.getCharacter());
+    /**
+     * Tarkistaa osuuko hahmo ruutuun. 
+     * 
+     * @param tile kentän tiili/ruutu.
+     * @return palauttaa boolean arvona osuiko vaiko ei.
+     */
+    public boolean hit(Tile tile) {
+        Shape impactZone = Shape.intersect(this.character, tile.getTile());
         return impactZone.getBoundsInLocal().getWidth() != -1;
     }
 

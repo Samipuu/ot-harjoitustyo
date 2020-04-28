@@ -40,7 +40,7 @@ public class UI extends Application {
         primaryStage.setTitle("JumpAddiction");
         Button start = new Button("Start");
         start.setOnAction(e-> {
-            Scene gameScene = new Scene(window, 1, 1);
+            Scene gameScene = new Scene(window);
             try {
                 Game newGame = new Game();
                 gameScene = newGame.getGameScene();

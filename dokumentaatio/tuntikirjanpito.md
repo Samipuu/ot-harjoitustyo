@@ -14,4 +14,7 @@ Päivä | Tunnit (h) | Mitä tehty?
 19.4.|2|Hypyn korjaaminen eri tilanteissa
 20.4.|3|Kartan luonti / testaus / bugien korjaamista
 21.4.|2|Dokumentaation päivitys ja testausten luonti
-yht|26,5|
+25.4.|2|Kartan lataaminen ja luomisen eriytys Game luokasta omaan Map luokkaan.
+27.4.|1,5|Testien kanssa tappelemista.
+28.4.|3|Testien korjaamista ja dokumentaation päivitystä.
+yht|33|

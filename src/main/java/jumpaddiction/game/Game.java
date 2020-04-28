@@ -5,24 +5,21 @@
  */
 package jumpaddiction.game;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import jumpaddiction.map.Map;
+
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javafx.animation.AnimationTimer;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.image.PixelReader;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import jumpaddiction.map.Tile;
 import jumpaddiction.ui.UI;
 
 /**
@@ -34,87 +31,22 @@ public class Game {
     public static int height = 600;
     
     private Scene gameScene;
-    private PixelReader pixelReader;
     
-    private int[][] map;
-    private List<Shape> tiles;
-    private List<Shape> spikes;
-    
-    private boolean readyToJump;
-    private double jumpHeight;
-
+    /**
+     * Lataa pelin objektit ja kartan. Luo myös pelin animaatiomoottorin.
+     * 
+     * @throws Exception 
+     */
     public Game() throws Exception {
-        GridPane window = new GridPane();
-        window.setPrefSize(width, height);
-        window.setGridLinesVisible(true);
+        GridPane window = setupGridpane();
         
-        tiles = new ArrayList<>();
-        spikes = new ArrayList<>();
-        map = new int[20][240];
-        
-        
-        try {
-            
-            InputStream in = getClass().getClassLoader().getResourceAsStream("test.txt");
-            BufferedReader br = new BufferedReader(
-                    new InputStreamReader(in)
-            );
-            
-            for (int row = 0; row < 20; row++) {
-                
-                String line = br.readLine();
-                String[] tokens = line.split(" ");
-                for (int col = 0; col < 240; col++) {
-                    map[row][col] = Integer.parseInt(tokens[col]);
-                    
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        int tileSize = 30;
-        
-        for (int row = 0; row < 20; row++) {
-            RowConstraints rowConst = new RowConstraints();
-            rowConst.setMaxHeight(30);
-            rowConst.setMinHeight(30);
-            window.getRowConstraints().add(rowConst);
-            for (int col = 0; col < 240; col++) {
-                if (row == 0) {
-                    ColumnConstraints colConst = new ColumnConstraints();
-                    colConst.setMaxWidth(30);
-                    colConst.setMinWidth(30);
-                    window.getColumnConstraints().add(colConst);
-                }
-                if (map[row][col] == 0) {
-                    Rectangle tile = new Rectangle(row * 30, col * 30, 30, 30);
-                    tile.setFill(Color.BLACK);
-                    tiles.add(tile);
-                    window.add(tile, col, row);
-                } else if (map[row][col] == 2) {
-                    Rectangle tile = new Rectangle(row * 30, col * 30, 30, 30);
-                    tile.setFill(Color.GREEN);
-                    tiles.add(tile);
-                    window.add(tile, col, row);
-                } else if (map[row][col] == 3) {
-                    Polygon spike = new Polygon(0, 30, 15, 0, 30, 30);
-                    spike.setFill(Color.RED);
-                    spikes.add(spike);
-                    window.add(spike, col, row);
-                }
-                
-
-            }
-        }
+        Map map = new Map(window);
         
         Character ball = new Player(100, 400);
         
         window.getChildren().add(ball.getCharacter());
         
-        gameScene = new Scene(window, width, height);
-        
-        Map<KeyCode, Boolean> pressedButtons = new HashMap<>();
+        HashMap<KeyCode, Boolean> pressedButtons = new HashMap<>();
          
         gameScene.setOnKeyPressed(event -> {
             pressedButtons.put(event.getCode(), Boolean.TRUE);
@@ -130,6 +62,7 @@ public class Game {
             
             @Override
             public void handle(long currentTime) {
+                
                 long elapsed = (System.currentTimeMillis() - time);
                 
                 if (pressedButtons.getOrDefault(KeyCode.UP, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.W, Boolean.FALSE) || pressedButtons.getOrDefault(KeyCode.SPACE, Boolean.FALSE)) {
@@ -142,17 +75,17 @@ public class Game {
                 Double futureX = ball.getCharacter().getTranslateX();
                 Double futureY = ball.getCharacter().getTranslateY();
                 Shape future = new Rectangle(futureX, futureY, 20, 20);
-                for (Shape tile:tiles) {
+                for (Tile tile:map.getTiles()) {
                     
                     if (elapsed > 2000) {
-                        tile.setTranslateX(tile.getTranslateX() - 1);
+                        tile.getTile().setTranslateX(tile.getTile().getTranslateX() - 4);
                     }
                     
-                    if (Shape.intersect(future, tile).getBoundsInLocal().getWidth() != -1) {
+                    if (Shape.intersect(future, tile.getTile()).getBoundsInLocal().getWidth() != -1) {
                             
                         this.stop();
                     
-                        if (tile.getFill() == Color.GREEN) {
+                        if (tile.getType() == 2) {
                             System.out.println("You won the GAME! You died " + UI.getDeaths() + " times during the game.");
                             UI.emptyDeaths();
                         } else {
@@ -162,7 +95,7 @@ public class Game {
                         UI.gameOver();
                     }
                     
-                    if (Shape.intersect(ball.getCharacter(), tile).getBoundsInLocal().getWidth() != -1) {
+                    if (ball.hit(tile)) {
                         ball.setComingDown(false);
                         ball.setReadyToJump(true);
                         gravity = false;
@@ -179,12 +112,12 @@ public class Game {
                     }
                 }
                 
-                for (Shape spike : spikes) {
+                for (Tile spike : map.getSpikes()) {
                     if (elapsed > 2000) {
-                        spike.setTranslateX(spike.getTranslateX() - 1);
+                        spike.getTile().setTranslateX(spike.getTile().getTranslateX() - 4);
                     }
                     
-                    if (Shape.intersect(ball.getCharacter(), spike).getBoundsInLocal().getWidth() != -1) {
+                    if (ball.hit(spike)) {
                         System.out.println("You lost the game!");
                         this.stop();
                         UI.gameOver();
@@ -195,10 +128,25 @@ public class Game {
         
     }
     
+    /**
+     * Metodi palauttaa Game luokan Scene objektin. 
+     * 
+     * @return Pelin Scene
+     */
     public Scene getGameScene() {
         return this.gameScene;
     }
-    
+    /**
+     * Alustaa Game luokan GridPane ikkunan.
+     * @return Gridpane
+     */
+    private GridPane setupGridpane() {
+        GridPane window = new GridPane();
+        gameScene = new Scene(window, width, height);
+        window.setPrefSize(width, height);
+        window.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        return window;
+    }
     
     
 }
