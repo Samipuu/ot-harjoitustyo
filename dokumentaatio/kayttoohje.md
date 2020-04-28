@@ -7,7 +7,7 @@ Lataa tiedosto [JumpAddiction.jar](https://github.com/Samipuu/ot-harjoitustyo/re
 Ohjelma käynnistetään komennolla
 
 ``
-java -jar todoapp.jar
+java -jar JumpAddiction.jar
 ``
 
 ## Pelin aloitus
