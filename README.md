@@ -10,7 +10,7 @@ Yksinkertainen sivulta kuvattu tasohyppely peli.
 
 [Työaikakirjanpito](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
-[Release](https://github.com/Samipuu/ot-harjoitustyo/releases/tag/viikko5)
+[Release](https://github.com/Samipuu/ot-harjoitustyo/releases/)
 
 ## Komentorivitoiminnot
 
@@ -57,3 +57,13 @@ Tiedoston checkstyle.xml määrittelemät tarkastukset voidaan suorittaa komenno
 mvn jxr:jxr checkstyle:checkstyle
 ```
 Raporttia voi tarkastella avaamalla tiedoston target/site/checkstyle.html
+
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocia voi tarkastella avaamalla tiedoston target/site/apidocs/index.html

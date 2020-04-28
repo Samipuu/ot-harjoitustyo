@@ -38,7 +38,9 @@ public class Game {
      * @throws Exception 
      */
     public Game() throws Exception {
-        GridPane window = setupGridpane();
+        GridPane window = setupGridPane();
+        
+        this.gameScene = new Scene(window, width, height);
         
         Map map = new Map(window);
         
@@ -140,9 +142,8 @@ public class Game {
      * Alustaa Game luokan GridPane ikkunan.
      * @return Gridpane
      */
-    private GridPane setupGridpane() {
+    private GridPane setupGridPane() {
         GridPane window = new GridPane();
-        gameScene = new Scene(window, width, height);
         window.setPrefSize(width, height);
         window.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         return window;
