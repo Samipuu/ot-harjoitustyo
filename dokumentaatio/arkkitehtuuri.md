@@ -49,7 +49,7 @@ Tämä toiminto palauttaa pelinäkymän sitä kutsuvalle.
 
 Luokkien suhdetta kuvaava luokka/pakkauskaavio:
 
-![Luokka/Pakkauskaavio](/dokumentaatio/kuvat/luokka_pakkauskaavio.png)
+![Luokka/Pakkauskaavio](/dokumentaatio/kuvat/luokka_pakkauskaavio2.png)
 
 ## Tietojen luku ja tallennus
 
