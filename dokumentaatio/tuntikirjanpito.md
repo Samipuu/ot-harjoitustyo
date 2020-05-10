@@ -23,5 +23,5 @@ Päivä | Tunnit (h) | Mitä tehty?
 6.5.|3|Tulostaulun rakentaminen. Googlen metodien teko.
 7.5.|3|Testausta, bugien korjausta ja Google palvelutunnuksen luonti. UI:n päivitys.
 8.5.|3|Game luokan rekonstruktio. Testien kirjoittaminen.
-10.5.|5|JavaDoc luonti. Settings luokan eriyttäminen. Koodin siivoaminen. Dokumentoinnin päivitys.
-yht|53,5|
+10.5.|8|JavaDoc luonti. Settings luokan eriyttäminen. Koodin siivoaminen. Dokumentoinnin päivitys.
+yht|56,5|
