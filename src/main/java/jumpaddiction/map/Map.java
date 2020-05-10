@@ -17,7 +17,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
 /**
- *
+ * Kartta luokka lataa tiedostosta pelattavan tason. 
  * @author suonpaas
  */
 public class Map {

@@ -17,7 +17,7 @@ Sovelluksen tarkoitus on olla leppoisaa ajanvietettä. Kyseessä on yksinkertais
 
 Perusversion jälkeen toteutettavaa jatkokehitystä.
 
-* Tulostaulu parhaista tuloksista :heavy_check_mark:
+* Tulostaulu parhaista tuloksista verkossa :heavy_check_mark:
 * Tuplahyppy
 * Kenttien lisääminen
 * Vaihtoehtoinen hahmo :heavy_check_mark:
