@@ -97,6 +97,7 @@ public class Settings {
         window.setPrefSize(UI.width, UI.height);
         
         Label res = new Label(resWidth[resI] + "x" + resHeight[resI]);
+        
         res.setMinWidth(100);
         res.setAlignment(Pos.CENTER);
         
