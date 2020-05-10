@@ -4,11 +4,15 @@ Yksinkertainen sivulta kuvattu tasohyppely peli.
 
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Arkkitehtuurikuvaus](https://github.com/Samipuu/ot-harjoitustyo/tree/master/dokumentaatio/arkkitehtuuri.md)
 
 [Työaikakirjanpito](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
+[Testausdokumentti](https://github.com/Samipuu/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
 
 [Release](https://github.com/Samipuu/ot-harjoitustyo/releases/)
 
@@ -60,7 +64,7 @@ Raporttia voi tarkastella avaamalla tiedoston target/site/checkstyle.html
 
 ### JavaDoc
 
-JavaDoc generoidaan komennolla
+JavaDoc generoidaan komennolla. Huomiona, että tarvitsee system variablen JAVA_HOME määrittämisen työasemalla. 
 
 ```
 mvn javadoc:javadoc
