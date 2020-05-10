@@ -9,16 +9,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /**
- *
+ * Piikki tyyppisen esteen loukka. Jatkaa tiililuokkaa. 
  * @author suonpaas
  */
 public class Spike extends Tile {
     
     /**
      * Luo piikki tyypin tiilen.
+     * @param tileSize int muuttujana annettava tiilenkoko.
      */
-    public Spike() {
-        super(new Polygon(0, 30, 15, 0, 30, 30), 3);
+    public Spike(int tileSize) {
+        super(new Polygon(0, tileSize, tileSize / 2, 0, tileSize, tileSize), 3);
         super.setColor(Color.RED);
     }
 }

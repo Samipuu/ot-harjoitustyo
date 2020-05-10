@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 /**
- *
+ * Abstrakti tiili luokka, jossa määritellään tiilen ulkomuoto.
  * @author suonpaas
  */
 public abstract class Tile {

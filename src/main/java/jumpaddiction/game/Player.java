@@ -9,18 +9,27 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 /**
- *
+ * Pelaaja luokka, joka jatkaa hahmo luokkaa. 
+ * 
+ * @see jumpaddiction.game.Character
  * @author suonpaas
  */
 public class Player extends Character {
-    
+    private double size;
     /**
      * Luo uuden pelaaja tyypin hahmon.
      * @param x pelaajan sijainti x-akselilla
      * @param y pelaajan sijainti y-akselilla
+     * @param color pelaajan hahmon väri. 
+     * @param size double muuttujana annettava koko.
      */
-    public Player(int x, int y) {
-        super(new Polygon(0, 0, 0, 20, 20, 20, 20, 0), x, y);
-        super.setColor(Color.CORAL);
+    public Player(int x, int y, Color color, double size) {
+        super(new Polygon(0, 0, 0, size, size, size, size, 0), x, y);
+        super.setColor(color);
+        this.size = size;
+    }
+    
+    public double getSize() {
+        return size;
     }
 }

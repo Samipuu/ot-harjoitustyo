@@ -6,7 +6,7 @@
 package jumpaddiction.ui;
 
 /**
- *
+ * Pääluokka, josta sovellus käynnistetään.
  * @author suonpaas
  */
 public class Main {

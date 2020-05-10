@@ -11,7 +11,7 @@ import javafx.scene.shape.Shape;
 import jumpaddiction.map.Tile;
 
 /**
- *
+ * Abstrakti hahmo luokka sisältää hahmon muodon ja toiminnallisuuksien määrittelyn. 
  * @author suonpaas
  */
 public abstract class Character {
@@ -51,15 +51,17 @@ public abstract class Character {
     }
     
     /**
-     * Hahmon hyppy metodi. Liikuttaa hahmoa ylöspäin mikäli hahmo on maassa.
+     * Hahmon hyppy metodi.Liikuttaa hahmoa ylöspäin mikäli hahmo on maassa.
+     * @param speed hypyn nopeus
+     * @param height hypyn korkeus
      */
-    public void jump() {
+    public void jump(double speed, double height) {
         if (readyToJump) {
-            this.jumpPoint = this.character.getTranslateY() - 100;
+            this.jumpPoint = this.character.getTranslateY() - height;
         }
         
         if (this.character.getTranslateY() > jumpPoint && !comingDown) {
-            this.character.setTranslateY(this.character.getTranslateY() - 6.8);
+            this.character.setTranslateY(this.character.getTranslateY() - speed);
             readyToJump = false;
         } else {
             this.comingDown = true;
@@ -68,13 +70,11 @@ public abstract class Character {
     }
     
     /**
-     * Hahmon painovoima. Liikuttaa hahmoa alaspäin. 
+     * Hahmon painovoima.Liikuttaa hahmoa alaspäin. 
+     * @param speed painovoiman vahvuus
      */
-    public void gravity() {
-        
-        this.character.setTranslateY(this.character.getTranslateY() + 2.8);
-        
-        
+    public void gravity(double speed) {
+        this.character.setTranslateY(this.character.getTranslateY() + speed);
     }
     
     /**

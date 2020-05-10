@@ -9,15 +9,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ * Maali luokka. Jatkaa tiili luokkaa.
+ * 
+ * @see jumpaddiction.map.Tile
  * @author suonpaas
  */
 public class Goal extends Tile {
     /**
      * Luo maali tyypin tiilen. 
+     * @param tileSize int muuttujana tiilenkoko.
      */
-    public Goal() {
-        super(new Rectangle(30, 30), 2);
+    public Goal(int tileSize) {
+        super(new Rectangle(tileSize, tileSize), 2);
         super.setColor(Color.GREEN);
         
     }
