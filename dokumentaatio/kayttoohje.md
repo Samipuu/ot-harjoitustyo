@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa tiedosto [JumpAddiction.jar](https://github.com/Samipuu/ot-harjoitustyo/releases/download/viikko6/JumpAddiction.jar)
+Lataa tiedosto [JumpAddiction.jar](https://github.com/Samipuu/ot-harjoitustyo/releases/download/v1.0/JumpAddiction.jar)
 
 ## Ohjelman käynnistäminen
 
@@ -9,6 +9,16 @@ Ohjelma käynnistetään komennolla
 ``
 java -jar JumpAddiction.jar
 ``
+
+## Asetusten muokkaaminen
+
+Pelissä on muutama asetus mitä pääset muokkaamaan. Asetukset löytyvät Settings-painikkeen takaa aloitusvalikossa. Saat muokattua resoluutiota, hahmon-väriä ja pelin vaikeusastetta. 
+
+Asetusten muokkaaminen tapahtuu halutun asetuksen vierellä olevista näppäimistä.
+
+## Tulostaulu
+
+Pelin online tulostaulun pääset näkemään aloitusvalikossa valitsemalla leaderboards-painikkeen. Tulostaululla näkyy 10 parasta tulosta jokaiselta vaikeusasteelta. 
 
 ## Pelin aloitus
 
