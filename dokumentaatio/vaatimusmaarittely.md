@@ -17,10 +17,11 @@ Sovelluksen tarkoitus on olla leppoisaa ajanvietettä. Kyseessä on yksinkertais
 
 Perusversion jälkeen toteutettavaa jatkokehitystä.
 
-* Tulostaulu parhaista tuloksista
+* Tulostaulu parhaista tuloksista :heavy_check_mark:
 * Tuplahyppy
 * Kenttien lisääminen
-* Vaihtoehtoinen hahmo
+* Vaihtoehtoinen hahmo :heavy_check_mark:
 * Loputon tila
-* Eri vaikeusasteet
+* Eri vaikeusasteet :heavy_check_mark:
 * Hotseat moninpeli kahdelle pelaajalle
+* Kentän lukeminen tiedostosta :heavy_check_mark:
