@@ -59,25 +59,14 @@ public class Settings {
      * Asettaa vaikeusasteen. 
      */
     public void setDifficulty() {
-        double difficulty;
-        String difName;
-        
-        if(difI == 0) {
-            difficulty = 0.5;
-            difName = difList[difI];
-            UI.setDifficulty(difName, difficulty);
+        if (difI == 0) {
+            UI.setDifficulty(difList[difI], 0.5);
         } else if (difI == 1) {
-            difficulty = 1;
-            difName = difList[difI];
-            UI.setDifficulty(difName, difficulty);        
+            UI.setDifficulty(difList[difI], 1.0);        
         } else if (difI == 2) {
-            difficulty = 1.5;
-            difName = difList[difI];
-            UI.setDifficulty(difName, difficulty);
+            UI.setDifficulty(difList[difI], 1.5);
         } else {
-            difficulty = 2;
-            difName = difList[difI];
-            UI.setDifficulty(difName, difficulty);
+            UI.setDifficulty(difList[difI], 2.0);
         }
     }
     
@@ -103,11 +92,10 @@ public class Settings {
         
         Button reduceRes = new Button("<");
         reduceRes.setOnAction(e -> {
-            if(resI == 0) {
-                resI = resHeight.length-1;
+            if (resI == 0) {
+                resI = resHeight.length - 1;
             } else {
                 resI--;
-        stage.setScene(settings);
             }
             UI.setResolution(resWidth[resI], resHeight[resI]);
             res.setText(resWidth[resI] + "x" + resHeight[resI]);
@@ -115,7 +103,7 @@ public class Settings {
         
         Button increaseRes = new Button(">");
         increaseRes.setOnAction(e -> {
-            if(resI == resHeight.length-1) {
+            if (resI == resHeight.length - 1) {
                 resI = 0;
             } else {
                 resI++;
@@ -131,8 +119,8 @@ public class Settings {
         
         Button changeColorLeft = new Button("<");
         changeColorLeft.setOnAction(e -> {
-            if(colorI == 0) {
-                colorI = colorList.length-1;
+            if (colorI == 0) {
+                colorI = colorList.length - 1;
             } else {
                 colorI--;
             }
@@ -142,7 +130,7 @@ public class Settings {
         
         Button changeColorRight = new Button(">");
         changeColorRight.setOnAction(e -> {
-            if(colorI == colorList.length-1) {
+            if (colorI == colorList.length - 1) {
                 colorI = 0;
             } else {
                 colorI++;
@@ -157,8 +145,8 @@ public class Settings {
         
         Button changeDifLeft = new Button("<");
         changeDifLeft.setOnAction(e -> {
-            if(difI == 0) {
-                difI = difList.length-1;
+            if (difI == 0) {
+                difI = difList.length - 1;
             } else {
                 difI--;
             }
@@ -169,7 +157,7 @@ public class Settings {
         
         Button changeDifRight = new Button(">");
         changeDifRight.setOnAction(e -> {
-            if(difI == difList.length -1) {
+            if (difI == difList.length - 1) {
                 difI = 0;
             } else {
                 difI++;

@@ -152,7 +152,7 @@ public class Leaderboards {
         
         window.setPrefSize(UI.width, UI.height);
         
-        window.setPadding(new Insets(10,10,10,10));
+        window.setPadding(new Insets(10, 10, 10, 10));
         window.setVgap(5);
         window.setHgap(5);
         
@@ -259,21 +259,21 @@ public class Leaderboards {
         
         
         
-        for(int i = 0; i < 10; i++) {
-            if(scores == null || i >= scores.size()) {
-                Label name = new Label(String.valueOf(i+1));
-                window.add(name, 0, i+2);
+        for (int i = 0; i < 10; i++) {
+            if (scores == null || i >= scores.size()) {
+                Label name = new Label(String.valueOf(i + 1));
+                window.add(name, 0, i + 2);
                 continue;
             }
             
             List row = scores.get(i);
-            Label name = new Label((i+1) + ". " + row.get(0));
+            Label name = new Label((i + 1) + ". " + row.get(0));
             name.setMaxWidth(300);
             Label score = new Label(row.get(1).toString());
             score.setMinWidth(40);
             score.setAlignment(Pos.CENTER);
-            window.add(name, 0, i+2);
-            window.add(score, 3, i+2);
+            window.add(name, 0, i + 2);
+            window.add(score, 3, i + 2);
         }
     }
     

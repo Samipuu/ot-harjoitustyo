@@ -79,9 +79,9 @@ public class Game {
         
         Long time = System.currentTimeMillis();
         
-        double speedX = (double)width / 200 * difficulty;
-        double speedJump = (double)height / 88 * difficulty;
-        double speedGravity = (double)height / 214 * difficulty;
+        double speedX = (double) width / 200 * difficulty;
+        double speedJump = (double) height / 88 * difficulty;
+        double speedGravity = (double) height / 214 * difficulty;
         double jumpHeight = height / 6;
         
         new AnimationTimer() {
@@ -104,7 +104,7 @@ public class Game {
                         tile.getTile().setTranslateX(tile.getTile().getTranslateX() - speedX);
                     }
                     
-                    if(checkMapCollision(tile)) {
+                    if (checkMapCollision(tile)) {
                         this.stop();
                     }
                 }
@@ -162,8 +162,8 @@ public class Game {
      */
     private Player setupPlayer(Color playerColor) {
         Point2D startPoint = map.getStartPoint();
-        double ballSize = (double)map.getTileSize() * (2.0/3.0);
-        Player player = new Player((int)startPoint.getX(), (int)startPoint.getY(), playerColor, ballSize);
+        double ballSize = (double) map.getTileSize() * (2.0 / 3.0);
+        Player player = new Player((int) startPoint.getX(), (int) startPoint.getY(), playerColor, ballSize);
         return player;
     }
     
@@ -204,7 +204,7 @@ public class Game {
                 
         Shape future = new Rectangle(futureX, futureY, ball.getSize(), ball.getSize());
         
-        if(difficulty == 2) {
+        if (difficulty == 2) {
             future = new Rectangle(futureX, futureY - 1, ball.getSize(), ball.getSize());
         } 
                 

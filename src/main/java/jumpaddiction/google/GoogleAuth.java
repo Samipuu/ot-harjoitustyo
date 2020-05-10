@@ -27,12 +27,12 @@ import java.util.List;
  */
 public class GoogleAuth {
     private Sheets sheetsService;
-    private final String APPLICATION_NAME = "JumpAddiction";
-    private final String SPREADSHEET_ID = "13SbeJMpXpiVgcL6kiNvRDlvb8_9t5RUZ-4LW8WBLTRU";
+    private final String applicationName = "JumpAddiction";
+    private final String spreadSheetID = "13SbeJMpXpiVgcL6kiNvRDlvb8_9t5RUZ-4LW8WBLTRU";
     
-    private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    private final JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
     
-    private final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS);
+    private final List<String> scopes = Arrays.asList(SheetsScopes.SPREADSHEETS);
     
     
     /**
@@ -44,17 +44,17 @@ public class GoogleAuth {
     private Sheets getSheetsService() throws GeneralSecurityException, IOException {
         KeyStore keystore = KeyStore.getInstance("PKCS12");
         keystore.load(this.getClass().getClassLoader().getResourceAsStream("service_account.p12"), "notasecret".toCharArray());
-        PrivateKey pk = (PrivateKey)keystore.getKey("privatekey", "notasecret".toCharArray());
+        PrivateKey pk = (PrivateKey) keystore.getKey("privatekey", "notasecret".toCharArray());
         Credential credential = new GoogleCredential.Builder()
                 .setTransport(GoogleNetHttpTransport.newTrustedTransport())
-                .setJsonFactory(JSON_FACTORY)
+                .setJsonFactory(jsonFactory)
                 .setServiceAccountId("leaderboard@jumpaddiction-1588274964013.iam.gserviceaccount.com")
                 .setServiceAccountPrivateKey(pk)
-                .setServiceAccountScopes(SCOPES)
+                .setServiceAccountScopes(scopes)
                 .build();
-                credential.refreshToken();
-        return new Sheets.Builder(GoogleNetHttpTransport.newTrustedTransport(), JSON_FACTORY, credential)
-                .setApplicationName(APPLICATION_NAME)
+        credential.refreshToken();
+        return new Sheets.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, credential)
+                .setApplicationName(applicationName)
                 .build();
     }
     
@@ -70,7 +70,7 @@ public class GoogleAuth {
         String range = difficulty + "!A2:B11";
         
         ValueRange response = sheetsService.spreadsheets().values()
-                .get(SPREADSHEET_ID, range)
+                .get(spreadSheetID, range)
                 .execute();
         
         List<List<Object>> values = response.getValues();
@@ -95,7 +95,7 @@ public class GoogleAuth {
                 ));
         
         AppendValuesResponse addResult = sheetsService.spreadsheets().values()
-                .append(SPREADSHEET_ID, difficulty, addRow)
+                .append(spreadSheetID, difficulty, addRow)
                 .setValueInputOption("USER_ENTERED")
                 .setInsertDataOption("INSERT_ROWS")
                 .setIncludeValuesInResponse(true)

@@ -41,7 +41,7 @@ public class Map {
         this.tiles = new ArrayList<>();
         this.spikes = new ArrayList<>();
         
-        tileSize = (int)window.getHeight() / 20;
+        tileSize = (int) window.getHeight() / 20;
         
         readMapFile(level);
         
@@ -119,13 +119,17 @@ public class Map {
                 }
             }
         } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Game ran into a problem");
-            alert.setContentText("Map could not be load. Check map file.");
-            alert.showAndWait();
+            alert();
             e.printStackTrace();
         }
+    }
+    
+    private void alert() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("ERROR");
+        alert.setHeaderText("Game ran into a problem");
+        alert.setContentText("Map could not be load. Check map file.");
+        alert.showAndWait();
     }
     
     /**
