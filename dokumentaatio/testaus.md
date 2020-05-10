@@ -6,7 +6,7 @@ Ohjelmaa on testattu sekä automatisoiduin testain JUnitilla sekä manuaalisesti
 
 ### Sovelluslogiikka
 
-Automatisoidut testit kohdistuvat luokkiin [jumpaddiction.game](/src/main/java/jumpaddiction/game), [jumpaddiction.map](/src/main/java/jumpaddiction/map) ja [jumpaddiction.google](/src/main/java/jumpaddiction/map). Sovelluslogiikkaa jumpaddiction.game luokassa on testattu yhdellä integraatiotestillä ja useilla yksikkötesteillä. Kaikki testit löytyvät luokasta [JumpAddictionTest](/src/test/java/JumpAddictionTest.java).
+Automatisoidut testit kohdistuvat luokkiin [jumpaddiction.game](/src/main/java/jumpaddiction/game), [jumpaddiction.map](/src/main/java/jumpaddiction/map) ja [jumpaddiction.google](/src/main/java/jumpaddiction/google). Sovelluslogiikkaa jumpaddiction.game luokassa on testattu yhdellä integraatiotestillä ja useilla yksikkötesteillä. Kaikki testit löytyvät luokasta [JumpAddictionTest](/src/test/java/JumpAddictionTest.java).
 
 Integraatiotesti on tehty varmistamaan ensimmäisen tason lataamisen onnituminen ja animaation pyöriminen ilman virheilmoituksia. Testissä simuloidaan sovelluksen käynnistäminen ja pelissä häviäminen. 
 
