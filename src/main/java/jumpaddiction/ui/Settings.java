@@ -170,9 +170,7 @@ public class Settings {
         
         Button mainMenu = new Button("Main Menu");
         mainMenu.setOnAction(e -> {
-            UI.resI = resI;
-            UI.colorI = colorI;
-            UI.difI = difI;
+            UI.setIndex(difI, colorI, resI);
             stage.setScene(mainMenu());
         });
         

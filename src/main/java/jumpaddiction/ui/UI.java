@@ -204,4 +204,17 @@ public class UI extends Application {
     public static void emptyDeaths() {
         deaths = 0;
     }
+    
+    /**
+     * Asettaa asetuksien indeksin taulukoissa. 
+     * @param x vaikeusasteen indeksi
+     * @param y värin indeksi
+     * @param z resoluution indeksi
+     */
+    public static void setIndex(int x, int y, int z) {
+        difI = x;
+        colorI = y;
+        resI = z;
+    }
+    
 }

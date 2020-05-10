@@ -45,7 +45,6 @@ public class Map {
         
         readMapFile(level);
         
-        
         for (int row = 0; row < rowCount; row++) {
             RowConstraints rowConst = new RowConstraints();
             rowConst.setMaxHeight(tileSize);
